@@ -5,7 +5,6 @@ edition.workspace = true
 
 [dependencies]
 scoped-css = { path = "../.." }
-scoped-css-core = { path = "../../scoped-css-core" }
 
 [build-dependencies]
 scoped-css-build = { path = "../../scoped-css-build" }

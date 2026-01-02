@@ -1,5 +1,4 @@
-use scoped_css::scoped_css;
-use scoped_css_core::ScopedStyles;
+use scoped_css::{ScopedStyles, scoped_css};
 
 const CSS: ScopedStyles = scoped_css!("example.css");
 
