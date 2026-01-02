@@ -5,8 +5,8 @@ basically a wrapper around [`lightningcss`] css modules implementation.
 ## installation
 
 ```bash
-cargo add --git https://github.com/l5cs/scoped-css.git
-cargo add --build --git ttps://github.com/l5cs/scoped-css.git --package scoped-css-build
+cargo add --git https://github.com/l5cs/scoped-css.git scoped-css
+cargo add --build --git ttps://github.com/l5cs/scoped-css.git scoped-css-build
 ```
 
 ## how to use
