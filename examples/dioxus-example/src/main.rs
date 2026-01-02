@@ -7,8 +7,8 @@ const CSS: ScopedStyles = scoped_css!("main.css");
 #[component]
 pub fn Hero() -> Element {
     rsx! {
-        div { class: &CSS["scoped"],
-            p { class: &CSS["p"], "hello css" }
+        div { class: CSS["scoped"],
+            p { class: CSS["p"], "hello css" }
         }
     }
 }

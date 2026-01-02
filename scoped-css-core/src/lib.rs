@@ -6,12 +6,12 @@ pub struct ScopedStyles {
 }
 
 impl Index<&'static str> for ScopedStyles {
-    type Output = str;
+    type Output = &'static str;
 
     fn index(&self, index: &'static str) -> &Self::Output {
         self.classes
             .iter()
-            .find_map(|(original, modified)| (*original == index).then_some(*modified))
-            .unwrap_or_default()
+            .find_map(|(original, modified)| (*original == index).then_some(modified))
+            .unwrap_or(&"")
     }
 }
