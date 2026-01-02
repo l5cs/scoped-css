@@ -1,10 +1,11 @@
 [workspace]
 members = [
     ".", 
+    "examples/dioxus-example", 
     "examples/example",
     "scoped-css-build",
     "scoped-css-core", 
-    "scoped-css-macro",
+    "scoped-css-macro", 
 ]
 resolver = "2"
 
