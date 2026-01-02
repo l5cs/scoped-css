@@ -11,8 +11,17 @@ use lightningcss::{
     stylesheet::{ParserOptions, StyleSheet, ToCssResult},
 };
 
-pub fn compile_css(output_path: impl AsRef<Path>) {
-    println!("cargo:rerun-if-changed=src/**/*.css");
+/// # Example
+///
+/// ```rust
+/// //! build.rs
+///
+/// fn main() {
+///     compile_css("src/**/*.css", "assets/main.generated.css");
+/// }
+/// ```
+pub fn compile_css(input_pattern: &str, output_path: impl AsRef<Path>) {
+    println!("cargo:rerun-if-changed={input_pattern}");
 
     let minify: bool = cfg!(not(debug_assertions));
 
@@ -27,7 +36,7 @@ pub fn compile_css(output_path: impl AsRef<Path>) {
 
     // the paths are guaranteed to be given in alphabetical order
     // https://docs.rs/glob/latest/glob/fn.glob.html
-    for entry in glob("src/**/*.css").unwrap() {
+    for entry in glob(input_pattern).unwrap() {
         let path: PathBuf = entry.unwrap();
         let css_source: String = fs::read_to_string(path).unwrap();
         let stylesheet: StyleSheet<'_, '_> = StyleSheet::parse(
