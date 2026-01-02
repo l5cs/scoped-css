@@ -19,7 +19,10 @@ unsynn! {
 pub fn scoped_css(input: TokenStream) -> TokenStream {
     let path: PathLiteral = TokenStream2::from(input).into_token_iter().parse().unwrap();
     // todo: this panics in rust-analyzer
-    let caller_file: PathBuf = Span::call_site().local_file().expect("call site");
+    let Some(caller_file) = Span::call_site().local_file() else {
+        // rust-analyzer gets `None` on this all the time
+        return "ScopedStyles { classes: &[] }".to_token_stream().into();
+    };
     let css_path: PathBuf = caller_file.parent().unwrap().join(path.0.as_str());
     let css_source: String = fs::read_to_string(css_path).unwrap();
 
